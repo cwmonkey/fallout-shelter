@@ -286,7 +286,7 @@ function handleFileSelect(evt) {
 ////////////////////////////////
 
 document.querySelector('#upload_sav').addEventListener('change', handleFileSelect, false);
-document.querySelector('#download_json').addEventListener('click', downloadSavJson, false);
-document.querySelector('#download_fixed_json').addEventListener('click', downloadFixedJson, false);
+//document.querySelector('#download_json').addEventListener('click', downloadSavJson, false);
+//document.querySelector('#download_fixed_json').addEventListener('click', downloadFixedJson, false);
 document.querySelector('#download_fixed_sav').addEventListener('click', downloadFixedSav, false);
 
