@@ -1,0 +1,90 @@
+{% capture liquid %}
+  {% assign validblocks = "intro_content},top_content},below_footer_content},head_extra_content},below_body_content}" | split: "," %}
+
+  {% assign parts = content | split: "{block=" %}
+  {% assign page_content = "" %}
+
+  {% if parts[1] %}
+    {% for part in parts %}
+      {% assign subparts = part | split: "{endblock}" %}
+
+      {% for validblock in validblocks %}
+        {% assign blockparts = subparts[0] | split: validblock %}
+
+        {% if blockparts[1] %}
+          {% if validblock == "intro_content}" %}
+            {% assign intro_content = blockparts[1] %}
+          {% elsif validblock == "top_content}" %}
+            {% assign top_content = blockparts[1] %}
+          {% elsif validblock == "below_footer_content}" %}
+            {% assign below_footer_content = blockparts[1] %}
+          {% elsif validblock == "head_extra_content}" %}
+            {% assign head_extra_content = blockparts[1] %}
+          {% elsif validblock == "below_body_content}" %}
+            {% assign below_body_content = blockparts[1] %}
+          {% endif %}
+
+        {% endif %}
+      {% endfor %}
+
+      {% capture page_content %}{{page_content}}{{subparts[1]}}{% endcapture %}
+    {% endfor %}
+  {% else %}
+    {% assign page_content = content %}
+  {% endif %}
+{% endcapture %}<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% if page.title %}{{ page.title }} &ndash; {% endif %}{% if page.site_title_override %}{{ page.site_title_override }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.metadescription %}{{ page.metadescription }}{% else %}{{ site.description }}{% endif %}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{{site.baseurl}}/css/global.css?{{ site.github.build_revision }}">
+  {{head_extra_content}}
+</head>
+<body data-touched="false" class="{% if site.local %}local {% else %}public {% endif %}{{page.body_class}}">
+
+{{ below_body_content }}
+
+<div class="top">
+  <header class="header" id="header" data-toggle-container data-toggle-default="on">
+    {% comment %}
+      <h1 class="headline1"><a href="{{site.baseurl}}/">{% if page.site_title_override %}{{ page.site_title_override }}{% else %}{{ site.title }}{% endif %}</a></h1>
+    {% endcomment %}
+
+    <h1 class="headline1">
+      <a href="{{site.baseurl}}/">
+        <span class="fallout_shelter">Fallout Shelter</span>
+        <span class="subtitle">Season Save Fixer</span>
+      </a>
+    </h1>
+
+    {{ intro_content }}
+  </header>
+
+  {{ top_content }}
+</div>
+
+{{ page_content }}
+
+<footer class="footer section"><div class="middle"><div class="inner">
+  <div class="cms">
+    <p>
+      This is a work in progress, so feel free to <a href="https://github.com/cwmonkey/fallout-shelter/issues?q=is%3Aissue" target="_blank">hit me up on GitHub</a> with any issues.
+    </p>
+    <p>
+      You can also contact me on Discord as <strong>WrasslorMonkey</strong>.
+    </p>
+  </div>
+  <div class="image">
+    <img src="{{site.baseurl}}/images/monkey-head-graffiti.png" alt="cwmonkey avatar" title="That's me">
+  </div>
+</div></div></footer>
+
+{{ below_footer_content }}
+
+</body>
+</html>

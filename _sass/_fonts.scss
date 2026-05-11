@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Fontdiner Swanky';
+    src: url('../fonts/FontdinerSwanky.eot');
+    src: url('../fonts/FontdinerSwanky.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FontdinerSwanky.woff2') format('woff2'),
+        url('../fonts/FontdinerSwanky.woff') format('woff'),
+        url('../fonts/FontdinerSwanky.ttf') format('truetype'),
+        url('../fonts/FontdinerSwanky.svg#FontdinerSwanky') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Futura Condensed PT';
+    src: url('../fonts/FuturaCondensedPT-Medium.eot');
+    src: url('../fonts/FuturaCondensedPT-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FuturaCondensedPT-Medium.woff2') format('woff2'),
+        url('../fonts/FuturaCondensedPT-Medium.woff') format('woff'),
+        url('../fonts/FuturaCondensedPT-Medium.ttf') format('truetype'),
+        url('../fonts/FuturaCondensedPT-Medium.svg#FuturaCondensedPT-Medium') format('svg');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}

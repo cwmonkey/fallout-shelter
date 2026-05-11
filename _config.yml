@@ -1,0 +1,26 @@
+# Handling Reading
+exclude: [Gemfile, run.bat]
+
+name: cwmonkey/fallout-shelter
+title: Fallout Shelter Tools
+description: Clean up season save files to be used as regular saves
+
+# Conversion
+# markdown:    kramdown
+highlighter: rouge
+excerpt_separator: "\n\n\n"
+
+# Outputting
+baseurl: /fallout-shelter
+
+sass:
+  style: compressed
+
+# Custom
+domain: cwmonkey.github.com
+url: /fallout-shelter
+author:
+  name: cwmonkey
+  email: monkey@mysmilies.com
+plugins_dir:
+ - jekyll-github-metadata

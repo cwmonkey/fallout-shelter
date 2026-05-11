@@ -1,0 +1,285 @@
+---
+---
+@charset "utf-8";
+
+@import "reset";
+@import "cms-normalize";
+@import "fonts";
+@import "mixins";
+
+$dark-green: #0a4e05;
+$mid-green: #115a15;
+$bright-green: #00ff02;
+
+$quests-color: #ffc578;
+$quests-shadow: #693026;
+
+/* More */
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  &:before {
+    background: #181e31 url(../images/NewVegas_Night_Wasteland.png) right bottom;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    // opacity: .5;
+  }
+
+  background: #000;
+  color: #ebebeb;
+  margin: 0;
+  font-family: Raleway, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3 {
+  // font-family: Fontdiner Swanky, Helvetica, Arial, sans-serif;
+  font-family: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.headline1 {
+  font-family: "Futura Condensed", Impact, Arial, sans-serif;
+  letter-spacing: .1em;
+  background: transparent url(../images/quest_bg_bg.png) left top;
+  background-size: 100% 100%;
+  margin-top: 10px;
+
+  a {
+    display: flex;
+    color: $quests-color;
+    text-decoration: none;
+    position: relative;
+
+    &:active,
+    &:visited {
+      color: $quests-color;
+    }
+  }
+
+  .fallout_shelter {
+    $scale: .25;
+    background: transparent url(../images/Fallout-Shelter-logo.png) left top no-repeat;
+    background-size: 100% 100%;
+    text-indent: 200%;
+    width: 686px * $scale;
+    height: 147px * $scale;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 20px -10px 0 10px;
+    position: relative;
+  }
+
+  .subtitle {
+    background: transparent url(../images/quest_bg.png) left top no-repeat;
+    background-size: 100% 100%;
+    display: table;
+    padding: 30px 80px 30px 90px;
+    text-shadow: .5px .5px 0px $quests-shadow,
+      1px 1px 0px $quests-shadow,
+      1.5px 1.5px 0px $quests-shadow,
+      2px 2px 0px $quests-shadow,
+      2.5px 2.5px 0px $quests-shadow,
+      3px 3px 0px $quests-shadow;
+    font-weight: normal;
+    font-size: 30px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  :after {
+    background: #CBC9A3;
+    content: "";
+    display: block;
+    height: 16px;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    position: absolute;
+    border-bottom: 3px solid #e3e4b8;
+  }
+}
+
+a {
+  color: #cd4534;
+
+  &:visited {
+    color: #bd3524;
+  }
+
+  &:active {
+    color: red;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+button:not([disabled]),
+[type="file"],
+label {
+  cursor: pointer; // TODO: Usability?
+}
+
+/* General */
+
+@keyframes targeted {
+  0% { outline: 10px dashed rgba(0, 255, 0, 0) }
+  10% { outline: 10px dashed rgba(0, 255, 0, 1) }
+  90% { outline: 10px dashed rgba(0, 255, 0, 1) }
+  100% { outline: 10px dashed rgba(0, 255, 0, 0) }
+}
+
+:target {
+  animation-name: targeted;
+  animation-duration: 4s;
+}
+
+.cms {
+  line-height: 1.4;
+
+  @include cms-normalize();
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  code {
+    font-size: .9em;
+    border: 1px solid #c4c4c4;
+    border-radius: 6px;
+    padding: 1px 2px;
+    background: rgba(0, 0, 0, .8);
+    color: #e4e4e4;
+  }
+}
+
+/* More */
+
+.section {
+  border: 3px solid $dark-green;
+  border-radius: 15px;
+  margin: 30px 30px 10px 30px;
+
+  > .middle {
+    border: 3px solid $bright-green;
+    border-radius: 12px;
+
+    > .inner {
+      border: 3px solid $dark-green;
+      border-radius: 9px;
+      background: rgba(0, 0, 0, .75);
+      background-clip: padding-box;
+      padding: 10px;
+    }
+  }
+
+  .section_header {
+    display: inline-block;
+    /*border: 3px solid $dark-green;
+    border-radius: 15px;*/
+    position: absolute;
+    margin: -30px 0 20px 20px;
+
+    > .middle {
+      position: relative;
+      display: block;
+      /*border: 3px solid $bright-green;
+      border-radius: 12px;*/
+      &:before {
+        content: "";
+        display: block;
+        z-index: 0;
+        width: 100%;
+        height: 9px;
+        background: $dark-green;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        margin-top: -4.5px;
+      }
+
+      > .inner {
+        position: relative;
+        display: block;
+        /*border: 3px solid $dark-green;
+        border-radius: 9px;
+        background: $mid-green;
+        background-clip: padding-box;
+        padding: 5px;*/
+        color: $bright-green;
+        //-webkit-text-stroke: 3px $dark-green;
+        text-shadow:
+          -1px -1px 0.02px $dark-green,
+          0px -1px 0.02px $dark-green,
+          1px -1px 0.02px $dark-green,
+          1px 0px 0.02px $dark-green,
+          1px 1px 0.02px $dark-green,
+          0px 1px 0.02px $dark-green,
+          -1px 1px 0.02px $dark-green,
+          -1px 0 0.02px $dark-green,
+          -2px -2px 0.02px $dark-green,
+          0px -2px 0.02px $dark-green,
+          2px -2px 0.02px $dark-green,
+          2px 0px 0.02px $dark-green,
+          2px 2px 0.02px $dark-green,
+          0px 2px 0.02px $dark-green,
+          -2px 2px 0.02px $dark-green,
+          -2px 0 0.02px $dark-green,
+          -3px -3px 0.02px $dark-green,
+          0px -3px 0.02px $dark-green,
+          3px -3px 0.02px $dark-green,
+          3px 0px 0.02px $dark-green,
+          3px 3px 0.02px $dark-green,
+          0px 3px 0.02px $dark-green,
+          -3px 3px 0.02px $dark-green,
+          -3px 0 0.02px $dark-green,
+          ;
+      }
+    }
+
+    + * {
+      margin-top: 20px;
+    }
+  }
+}
+
+/* Fixer */
+
+.fixer_section {
+  .cms p {
+    margin-left: 2em;
+  }
+}
+
+/* Footer */
+
+.footer > .middle > .inner {
+  display: flex;
+  justify-content: space-between;
+
+  .image img {
+    width: 48px;
+  }
+}
