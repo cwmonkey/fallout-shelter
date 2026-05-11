@@ -71,9 +71,13 @@ site_title_override: Fallout Shelter Season Save Fixer
 
     <p>Download the scrubbed save file as <code>Vault1.sav</code>, <code>Vault2.sav</code> or <code>Vault3.sav</code> in your save folder (location above).
 
-    <!-- p><button id="download_json" type="button">Download .json</button></p>
+    {% if site.local %}
+      <p><button id="download_json" type="button">Download .json</button></p>
+      <p><button id="download_trimmed_json" type="button">Download trimmed .json</button></p>
 
-    <p><button id="download_fixed_json" type="button">Download fixed .json</button></p -->
+      <p><button id="download_fixed_json" type="button">Download fixed .json</button></p>
+      <p><button id="download_trimmed_fixed_json" type="button">Download trimmed fixed .json</button></p>
+    {% endif %}
 
     <p><button id="download_fixed_sav" type="button">Download fixed .sav</button></p>
   </div>

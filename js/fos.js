@@ -199,7 +199,9 @@ function fix(json) {
   // Scrub season data
   delete fixedJson['seasonEventData'];
   fixedJson.seasonId = '';
-  fixedJson.tutorialManager.canShowSeasonButton = 0;
+  //fixedJson.tutorialManager.canShowSeasonButton = 0;
+  //fixedJson.tutorialManager.skippedTutorial = 1;
+  delete fixedJson['tutorialManager'];
   //   seasonTutorialCompleted: 0
   // seasonalQuestTutorialCompleted: 0
 }
@@ -255,6 +257,29 @@ function downloadFixedJson() {
   downloadJson(fixedJson, fileName.replace('.sav', '_fixed.json'));
 }
 
+const trims = ['timeMgr', 'localNotificationMgr', 'taskMgr', 'ratingMgr', 'specialTheme', 'dwellers', 'constructMgr', 'vault', 'dwellerSpawner', 'deviceName', 'survivalW', 'ShopWindow', 'happinessManager', 'refugeeSpawner', 'LunchBoxCollectWindow', 'SeasonShopWarningModal', 'DeathclawManager', 'PromoCodesWindow', 'JunkGiveAwayWindow', 'MysteriousStranger', 'StatsWindow', 'appVersion', 'BottleAndCappyMgrSerializeKey', 'completedQuestDataManager', 'cameraPosition', 'questSetup', 'questDataManager', 'questDwellers', 'questDwellerSpawner'];
+
+// Json trimmer
+function downloadTrimmedJson(json, fileName) {
+  const trimmedJson = JSON.parse(JSON.stringify(json));
+
+  for (const trim in trims) {
+    delete trimmedJson[trims[trim]];
+  }
+
+  downloadJson(trimmedJson, fileName);
+}
+
+// Download formatted, trimmed, unscrubbed json
+function downloadTrimmedSavJson() {
+  return downloadTrimmedJson(json, fileName.replace('.sav', '_trimmed.json'));
+}
+
+// Download formatted, trimmed, scrubbed json
+function downloadTrimmedFixedJson() {
+  return downloadTrimmedJson(fixedJson, fileName.replace('.sav', '_trimmed_fixed.json'));
+}
+
 // Download scrubbed .sav file
 function downloadFixedSav() {
   const blob = encrypt(JSON.stringify(fixedJson));
@@ -286,7 +311,15 @@ function handleFileSelect(evt) {
 ////////////////////////////////
 
 document.querySelector('#upload_sav').addEventListener('change', handleFileSelect, false);
-//document.querySelector('#download_json').addEventListener('click', downloadSavJson, false);
-//document.querySelector('#download_fixed_json').addEventListener('click', downloadFixedJson, false);
+
+// Debug
+try {
+  document.querySelector('#download_json').addEventListener('click', downloadSavJson, false);
+  document.querySelector('#download_trimmed_json').addEventListener('click', downloadTrimmedSavJson, false);
+  document.querySelector('#download_fixed_json').addEventListener('click', downloadFixedJson, false);
+  document.querySelector('#download_trimmed_fixed_json').addEventListener('click', downloadTrimmedFixedJson, false);
+} catch(e) {
+}
+
 document.querySelector('#download_fixed_sav').addEventListener('click', downloadFixedSav, false);
 
