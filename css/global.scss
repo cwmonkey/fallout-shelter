@@ -283,3 +283,27 @@ label {
     width: 48px;
   }
 }
+
+@media screen and (width <= 800px) {
+  .headline1 {
+    .fallout_shelter {
+      width: 686px * .15;
+      height: 147px * .15;
+      margin-top: 0;
+    }
+
+    .subtitle {
+      padding: 17px 39px 10px 49px;
+      font-size: 16px;
+    }
+
+    :after {
+      height: 7px;
+    }
+  }
+
+  .section {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
